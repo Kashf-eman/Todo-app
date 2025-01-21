@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="bgdiv">
+        <div class="alertbox"id="alert">
+            <span class="fa-solid fa-circle-check cir"></span>
+            <span class="msg">Registration successful!</span>
+            <span class="close" id="closebtn">
+            <span class="fa-solid fa-xmark"></span>
+            </span> 
+       </div>
+        <div class="formdiv">
+            <h1>Sign Up</h1>
+            <form id="signform">
+                <label >First Name</label><br>
+                <input type="text"id="firstname"><br>
+                <label >Last Name</label><br>
+                <input type="text" id="lastname"><br>
+          <label >Email</label><br>
+    <input type="text"id="email"><br>
+    <label >Password</label><br>
+    <input type="password" id="password1">
+    <i id="eye1" class="fa-regular fa-eye"></i><br>
+    <label >Confirm Password</label><br>
+    <input type="password" id="password2">
+    <i id="eye2" class="fa-regular fa-eye eyes"></i>  
+    
+        
+    <button id="btn">
+        <span id="btn-text">Sign Up</span>
+        <span id="loader" style="display:none; color: white;"><i class="fa-solid fa-spinner"></i></span>
+    </button>
+
+    <p class="sign"> Already have an account?
+        <a href="index.html">Login</a>
+    </p>
+</form>   
+        </div>
+       </div> 
+   
+ <script src="signup.js"></script>      
+       <!-- <script>
+        var password1= document.getElementById("password1")
+        var eyeicon1=document.getElementById("eye1")
+        eyeicon1.addEventListener("click",function(){
+        if(password1.type=="password"){
+            password1.type="text"
+        }
+        else {
+        password1.type = "password";  
+    }
+        })
+        var password2= document.getElementById("password2")
+        var eyeicon2=document.getElementById("eye2")
+        eyeicon2.addEventListener("click",function(){
+        if(password2.type=="password"){
+            password2.type="text"
+        }
+        else {
+        password2.type = "password";  
+    }
+        })        
+        
+        
+           </script> -->
+     
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   <div class="bgdiv">
+    <div class="alertbox"id="alert">
+         <span class="fa-solid fa-circle-check cir"></span>
+         <span class="msg">Login successful!</span>
+         <span class="close" id="closebtn">
+         <span class="fa-solid fa-xmark"></span>
+         </span> 
+    </div>
+    <div class="alertbox1 "id="alert1">
+        <span class="fa-solid fa-circle-exclamation cir1"></span>
+        <span class="msg1">Error occurred</span>
+        <span class="close1" id="closebtn1">
+        <span class="fa-solid fa-xmark"></span>
+        </span> 
+   </div>
+    <div class="formdiv">
+        <h1>Login</h1>
+        <form id="loginForm">
+      <label >Email</label><br>
+<input type="text" id="email"><br>
+<label >Password</label><br>
+<input type="password" id="password">
+
+<i id="eye" class="fa-regular fa-eye"></i>
+
+
+      
+<!-- <a href="todo.html"> -->
+    <button id="btn">
+        <span id="btn-text">Login</span>
+  <span id="loader" style="display:none; color: white;"><i class="fa-solid fa-spinner"></i></span>
+    </button>
+<!-- </a> -->
+</form>
+<p class="forget">
+<a href="forget.html">Forget Password?</a></p>
+<a href="signup.html"><p class="sign"> Need an account?Sign Up</p></a>
+
+    </div>
+   </div> 
+
+
+
+
+   <script>
+var password= document.getElementById("password")
+var eyeicon=document.getElementById("eye")
+eyeicon.addEventListener("click",function(){
+if(password.type=="password"){
+    password.type="text"
+}
+else {
+        password.type = "password";  
+    }
+})
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); 
+let alertbox=document.getElementById("alert")
+let close =document.getElementById("closebtn")
+let alertbox1=document.getElementById("alert1")
+let close1 =document.getElementById("closebtn1")
+let loader=document.getElementById("loader")
+loader.style.display="block"
+let btntext=document.getElementById("btn-text")
+btntext.style.display="none"
+close.addEventListener("click",function(){
+     alertbox.style.right="-400px";
+     window.location.href = 'todo.html';
+})
+close1.addEventListener("click",function(){
+    alertbox1.style.right="-400px";
+})
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch('https://todo-backend-apis.vercel.app/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    console.log('Logged in successfully:', data);
+                    // alert('Login successful!');
+                    alertbox.style.right="10px"
+                
+                } else {
+                    console.error('Login failed:', data.message);
+                    // alert('Login failed: ' + data.message);
+                      alertbox1.style.right="10px"
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+            finally {
+        
+        loader.style.display="none"
+        btntext.style.display="block"
+
+    }
+        });
+
+
+
+
+
+   </script>
+</body>
+
+</html>

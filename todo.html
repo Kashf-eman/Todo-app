@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to do</title>
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="bgdiv">
+        <nav>
+         <div class="img">
+        <a href="profile.html"> <img src="profile.png" alt="" height="100%"width="100%"></a></div>
+         <p>Logout</p>
+        </nav> 
+
+        <div class="main">
+            <div class="alertbox"id="alert">
+                <span class="fa-solid fa-circle-check cir"></span>
+                <span class="msg"id="msgtext"></span>
+                <span class="close" id="closebtn">
+                <span class="fa-solid fa-xmark"></span>
+                </span> 
+           </div>
+            <div class="formdiv">
+                <h1 id="headingname">....</h1>
+                <div class="todobox">
+<div class="nav">
+    <div class="icon"><i class="fa-solid fa-book"></i></div>
+    <input type="text"id="inp"placeholder="New Todo"><br>
+    <button id="addtodo">
+        <span id="btn-text">Add New Task</span>
+        <span id="loader" style="display:none; color: white;"><i class="fa-solid fa-spinner"></i></span>
+    </button>
+
+</div>
+<div class="buttonbar">
+    <div  style="background-color: rgb(43, 43, 43);">All</div>
+    <div>Done</div>
+    <div>Todo</div>
+</div>
+
+<div class="searchbar">
+    <div class="icon1"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <input type="text"id="search"placeholder="Search"><br>
+
+                </div>
+
+                <div id="section">
+
+
+
+                    <ul id="todo">
+                 
+                    </ul>
+<div id="buttons">
+    <button id="prevPage" style="display:none;">Previous</button>
+    <button id="nextPage" style="display:none;">Next</button>
+</div>
+
+                    </div>
+
+                      </div>
+</div>
+</div>
+
+
+
+        </div>
+
+
+
+
+
+</div>
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.getElementById("nav");
+    const input = document.getElementById("inp");
+    const section = document.getElementById("section");
+    const todo = document.getElementById("todo");
+    const buttons = document.getElementById("buttons");
+    const search = document.getElementById("search");
+    var add = document.getElementById("addtodo");
+    var msgtext = document.getElementById("msgtext");
+    let alertbox = document.getElementById("alert");
+    let close = document.getElementById("closebtn");
+    var sect = document.createElement("div");       
+     var loader = document.getElementById("loader")
+       
+       var btntext = document.getElementById("btn-text")
+
+
+    sect.innerHTML = "Todo Not Found";
+    sect.className = "sect";
+    section.appendChild(sect);
+
+    let isUpdating = false; 
+
+
+    function headname() {
+        const storedData = localStorage.getItem('userData');
+        if (storedData) {
+            const userData = JSON.parse(storedData);
+            const firstName = (userData.firstName || '').toUpperCase();
+            const lastName = (userData.lastName || '').toUpperCase();
+            var headname = document.getElementById("headingname");
+            headname.innerHTML = `HI! ${firstName} ${lastName}`;
+        }
+    }
+
+    headname();
+    let selectedTodoId = null;
+    add.addEventListener("click", function () {
+        var li = document.createElement("li");
+li.id="todo-item"
+const p = document.createElement("p");
+const btn = document.createElement("div");
+btn.id="btn-icon"
+        sect.style.display = 'none';
+        btntext.style.display = "none";
+        loader.style.display = "block";
+        const todoText = input.value;
+        if (!todoText) {
+            alert("Please enter a todo.");
+            return;
+        }
+
+p.innerHTML = todoText;
+        close.addEventListener("click", function () {
+            alertbox.style.top = "-100px";
+        });
+
+        const todos = { todo: todoText };
+
+        if (isUpdating) {
+    
+
+
+            const updatedTodo = { id: selectedTodoId,
+                 todo: todoText };
+   
+            const myHeaders = new Headers();
+            myHeaders.append("authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzUwNDIyNjMsImV4cCI6MTczNTEyODY2M30.jipmR_X8vovlVw0MNTYaEJvEotpG6P9sQG8csBWe11g");
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify(updatedTodo);
+
+            const requestOptions = {
+                method: "PUT",
+                headers: myHeaders,
+                body: raw,
+            };
+            const updatedText = input.value; 
+            fetch("https://todo-backend-apis.vercel.app/api/todo", requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Todo updated:", data);
+                                const li = document.getElementById("todo-item"); 
+const icon=document.getElementById("btn-icon")
+
+const p = li.querySelector("p");
+p.textContent = input.value
+                    p.textContent = input.value;
+                    alertbox.style.top = "60px";
+
+            
+
+
+                    msgtext.innerHTML = "Updated data successful!";
+                    input.value = "";  
+                    add.innerHTML = "Add Todo";
+                    isUpdating = false;  
+                    selectedTodoId = null;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while updating the todo.");
+                });
+               
+        } else {
+       
+            const myHeaders = new Headers();
+            myHeaders.append("authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzUwNDIyNjMsImV4cCI6MTczNTEyODY2M30.jipmR_X8vovlVw0MNTYaEJvEotpG6P9sQG8csBWe11g");
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify(todos);
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+            };
+
+            fetch("https://todo-backend-apis.vercel.app/api/todo", requestOptions)
+                .then(response => response.json())
+                .then(apiResponse => {
+        const todos = apiResponse.data; 
+        if (apiResponse){
+                        console.log("Response Data:", todos);
+
+                        p.innerHTML = todoText;
+                        li.appendChild(p);
+                        todo.appendChild(li);
+
+                      
+                        btn.className = "btn";
+                        li.appendChild(btn);
+
+                        const check = document.createElement("input");
+                        check.type = "checkbox";
+                        check.className = "checkbox";
+                        btn.appendChild(check);
+
+                        check.addEventListener("click", function () {
+                            if (check.checked) {
+                                p.style.color = "red";
+                                p.style.textDecoration = "line-through";
+                            } else {
+                                p.style.color = "";
+                                p.style.textDecoration = "";
+                            }
+                        });
+
+                        const editbtn = document.createElement("button");
+                        editbtn.className = "fa-solid fa-pen editbtn";
+                        btn.appendChild(editbtn);
+
+                        editbtn.addEventListener("click", function () {
+                            input.value = p.innerHTML;
+                            add.innerHTML = "Update";
+                            isUpdating = true; 
+                            selectedTodoId = todos._id; 
+                        });
+
+                        const delbtn = document.createElement("button");
+                        delbtn.className = "fa-solid fa-trash delbtn";
+                        btn.appendChild(delbtn);
+                        delbtn.addEventListener("click", function () {
+                        
+                        var id = todos._id ;
+                            const myHeaders = new Headers();
+            myHeaders.append("authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzUwNDIyNjMsImV4cCI6MTczNTEyODY2M30.jipmR_X8vovlVw0MNTYaEJvEotpG6P9sQG8csBWe11g");
+            myHeaders.append("Content-Type", "application/json");
+                            const requestOptions = {
+                            method: "DELETE",
+                            headers: myHeaders,
+                        };
+                    
+
+                        fetch(`https://todo-backend-apis.vercel.app/api/todo/${id}`, requestOptions)
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Todo deleted:", data);
+                                alertbox.style.top = "60px";
+                                    msgtext.innerHTML="Delete data successful!"
+                               
+                                li.remove();
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert("An error occurred while deleting the todo.");
+                            });
+                        });
+                        const disbtn = document.createElement("button");
+                    disbtn.innerHTML = "Disable Delete Todo";
+                    disbtn.className = "disbtn";
+                    if (!document.querySelector(".disbtn")) {
+                        buttons.appendChild(disbtn);
+                    }
+                    disbtn.disabled = true;
+                    disbtn.addEventListener("click", function () {
+                        li.remove();
+                    });
+
+                    const delli = document.createElement("button");
+                    delli.innerHTML = "Delete Todo";
+                    delli.className = "delli";
+                    if (!document.querySelector(".delli")) {
+                        buttons.appendChild(delli);
+                    }
+                    delli.disabled = false;
+                    delli.addEventListener("click", function () {
+                        li.remove();
+                    });
+                        section.style.paddingBottom = "300px";
+                        input.value = "";
+                        loader.style.display = "none";
+                        btntext.style.display = "block";
+                        alertbox.style.top = "60px";
+                        msgtext.innerHTML = "Added data successful!";
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while adding the todo.");
+                });
+        }
+    });
+    search.addEventListener("input", function () {
+  const searchQuery = search.value;
+
+  if (!searchQuery) {
+    return;
+  }
+
+  const myHeaders = new Headers();
+  myHeaders.append("authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzUwNDIyNjMsImV4cCI6MTczNTEyODY2M30.jipmR_X8vovlVw0MNTYaEJvEotpG6P9sQG8csBWe11g");
+  myHeaders.append("Content-Type", "application/json");
+
+  fetch(`https://todo-backend-apis.vercel.app/api/todo?search=${searchQuery}&limit=10&page=1`, {
+    method: "GET",
+    headers: myHeaders,
+  })
+  .then(response =>  response.json())
+  .then(apiResponse => {
+        const data = apiResponse.data; 
+       
+        
+    console.log("Search Results:", data);
+
+   
+    todo.innerHTML = '';
+
+    if (data && data.length > 0) {
+        sect.style.display = 'none';
+            
+      data.forEach(todoItem => {
+        var li = document.createElement("li");
+        const p = document.createElement("p");
+        p.innerHTML = todoItem.todo;
+       
+        li.appendChild(p);
+        todo.appendChild(li);
+        const btn = document.createElement("div");
+        btn.className = "btn"; 
+        li.appendChild(btn); 
+
+      
+        const check = document.createElement("input");
+        check.type = "checkbox"; 
+        check.className = "checkbox"; 
+        btn.appendChild(check); 
+
+     
+        check.addEventListener("click", function () {
+            if (check.checked) {
+                p.style.color = "red"; 
+                p.style.textDecoration = "line-through"; 
+            } else {
+                p.style.color = ""; 
+                p.style.textDecoration = ""; 
+            }
+        });
+
+    
+        const editbtn = document.createElement("button");
+        editbtn.className = "fa-solid fa-pen editbtn"; 
+        btn.appendChild(editbtn); 
+
+        editbtn.addEventListener("click", function () {
+            input.value = p.innerHTML; 
+            // add.innerHTML = "Update"; 
+            // isUpdating = true; 
+            selectedTodoId = todoItem._id; 
+        });
+        const delbtn = document.createElement("button");
+  delbtn.className = "fa-solid fa-trash delbtn";
+  btn.appendChild(delbtn);
+        delbtn.addEventListener("click", function () {
+            var id = todoItem._id; 
+            const myHeaders = new Headers();
+            myHeaders.append("authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzUwNDIyNjMsImV4cCI6MTczNTEyODY2M30.jipmR_X8vovlVw0MNTYaEJvEotpG6P9sQG8csBWe11g"); 
+            myHeaders.append("Content-Type", "application/json");
+
+            const requestOptions = {
+                method: "DELETE",
+                headers: myHeaders,
+            };
+
+            fetch(`https://todo-backend-apis.vercel.app/api/todo/${id}`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Todo deleted:", data);
+                    alertbox.style.top = "60px";
+                    msgtext.innerHTML = "Delete data successful!"; 
+                    li.remove(); 
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while deleting the todo.");
+                });
+        });
+      });
+    
+    } else {
+     
+      var li = document.createElement("li");
+      const p = document.createElement("p");
+      p.innerHTML = "No matching todos found";
+      li.appendChild(p);
+      todo.appendChild(li);
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching search results:', error);
+  });
+});
+    });
+    
+
+
+</script> -->
+
+
+    <script src="todo.js"></script>
+</body>
+</html>

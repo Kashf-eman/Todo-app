@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="bgdiv">
+   <nav>
+    <div class="img">
+    <img src="profile.png" alt="" height="100%"width="100%"></div>
+    <p id="datalog">Logout</p>
+   </nav> 
+   <div class="main">
+    <div class="formdiv">
+      <div class="upload">
+      
+        <img src="profile.png"accept="image/*" alt=""height="100%"width="100%" id="profile">
+   
+        <div class="round">
+            <input type="file" id="inpfile">
+            <i class="fa-solid fa-camera"></i>
+        </div>
+      </div>
+        <form>
+            <label >First Name</label><br>
+            <input type="text"id="firstname"><br>
+            <label >Last Name</label><br>
+            <input type="text" id="lastname"><br>
+      <label >Email</label><br>
+<input type="text" id="email"><br>
+<label >Old Password</label><br>
+<input type="password" id="password1">
+<i id="eye1" class="fa-regular fa-eye"></i><br>
+<label >New Password</label><br>
+<input type="password" id="password2">
+<i id="eye2" class="fa-regular fa-eye eyes"></i>  
+
+        </form>
+<button id="btn">Submit</button>
+
+
+
+    </div>
+   </div>
+</div>
+
+<script>
+            var password1= document.getElementById("password1")
+        var eyeicon1=document.getElementById("eye1")
+        eyeicon1.addEventListener("click",function(){
+        if(password1.type=="password"){
+            password1.type="text"
+        }
+        else {
+        password1.type = "password";  
+    }
+        })
+        var password2= document.getElementById("password2")
+        var eyeicon2=document.getElementById("eye2")
+        eyeicon2.addEventListener("click",function(){
+        if(password2.type=="password"){
+            password2.type="text"
+        }
+        else {
+        password2.type = "password";  
+    }
+        }) 
+
+
+
+        let profile=document.getElementById("profile")  ;
+        let inpfile=document.getElementById("inpfile");
+        inpfile.onchange=function(){
+            profile.src=URL.createObjectURL(inpfile.files[0])
+        }
+
+
+     function user() {
+   
+    const storedData = localStorage.getItem('userData');
+
+    if (storedData) {
+    
+            
+            const userData = JSON.parse(storedData);
+
+          
+            document.getElementById('firstname').value = userData.firstName || '';
+            document.getElementById('lastname').value = userData.lastName || '';
+            document.getElementById('email').value = userData.email || '';
+            document.getElementById('password1').value= userData.password||''; 
+            document.getElementById('password2').value = '';
+        } 
+     }
+user() 
+var datalog=document.getElementById("datalog")  ;
+datalog.addEventListener("click",function(){
+// localStorage.remove();
+alert("logout successfully");
+window.location.href="login.html"
+})   
+</script>
+</body>
+</html>

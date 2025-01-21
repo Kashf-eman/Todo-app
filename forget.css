@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bgdiv{
+    background-image: url(image11.jpeg) ;
+    background-size: 100% 100%;
+    
+    height: 100vh;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formdiv{
+    background-color: transparent;
+    position: relative;
+    width:630px;
+    height: 315px;
+    /* border: 1px solid red; */
+    /* border:1px solid rgba(255,255,255,0.5); */
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(18px);
+    color: white;
+    padding: 30px 40px;
+}
+.formdiv h1{
+    font-size: 35px;
+}
+form{
+    /* border: 1px solid white; */
+    padding: 20px 0px ;
+}
+form label{
+    font-size: 18px;
+    font-weight: bold;
+margin: 15px 0px;
+
+}
+form input{
+width:100%;
+height:43px;
+margin:0px 0px 5px 0px;
+border:none ;
+outline: none;
+border-radius:6px;
+padding: 0px 20px;
+font-size: 18px;
+}
+
+#btn{
+    width:100%;
+    border-radius: 8px;
+    height: 45px;
+background-color: rgb(65, 107, 124);
+color: white;
+border: none;
+font-size: 20px;
+
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.log{
+    text-align: center;
+    /* text-decoration: underline; */
+    color: white;
+    padding:30px 0px;
+    font-size: 22px;  
+}
+
+
+
+
+@media only screen and (max-width:680px) {
+    .formdiv{
+      
+       margin: 0 20px ;
+       /* border:1px solid red */
+    }
+   
+}
+
+
