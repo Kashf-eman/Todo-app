@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch(url, {
             method: 'GET',
             headers: {
-                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzcyNzU5NDUsImV4cCI6MTczNzM2MjM0NX0.SHqB0pHgKI0Qo8butJ7WGNPz8qSvQEoP7dydy53rPHQ',
+                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3Mzc0NjU5MDUsImV4cCI6MTczNzU1MjMwNX0.dIPXjtvfVzoa6kgDy57kIHwmPqIopV9hnsM6GAU0mWU',
                 'Content-Type': 'application/json',
             }
         })
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch("https://todo-backend-apis.vercel.app/api/todo", {
                 method: "PUT",
                 headers: {
-                    'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzcyNzU5NDUsImV4cCI6MTczNzM2MjM0NX0.SHqB0pHgKI0Qo8butJ7WGNPz8qSvQEoP7dydy53rPHQ',
+                    'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3Mzc0NjU5MDUsImV4cCI6MTczNzU1MjMwNX0.dIPXjtvfVzoa6kgDy57kIHwmPqIopV9hnsM6GAU0mWU',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedTodo),
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch("https://todo-backend-apis.vercel.app/api/todo", {
                 method: "POST",
                 headers: {
-                    'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzcyNzU5NDUsImV4cCI6MTczNzM2MjM0NX0.SHqB0pHgKI0Qo8butJ7WGNPz8qSvQEoP7dydy53rPHQ',
+                    'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3Mzc0NjU5MDUsImV4cCI6MTczNzU1MjMwNX0.dIPXjtvfVzoa6kgDy57kIHwmPqIopV9hnsM6GAU0mWU',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(todoData),
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch(`https://todo-backend-apis.vercel.app/api/todo/${id}`, {
             method: 'DELETE',
             headers: {
-                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3MzcyNzU5NDUsImV4cCI6MTczNzM2MjM0NX0.SHqB0pHgKI0Qo8butJ7WGNPz8qSvQEoP7dydy53rPHQ',
+                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3Mzc0NjU5MDUsImV4cCI6MTczNzU1MjMwNX0.dIPXjtvfVzoa6kgDy57kIHwmPqIopV9hnsM6GAU0mWU',
                 'Content-Type': 'application/json',
             },
         })
