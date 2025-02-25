@@ -371,3 +371,52 @@ ul li:hover{
 
 
 
+@media only screen and (max-width:830px){
+    .formdiv{
+
+        width: 650px;;
+    }
+    .main{
+   
+        padding: 50px 0px;
+    }
+}
+@media only screen and (max-width:730px){
+    .formdiv{
+
+        width: 550px;;
+    }
+}
+@media only screen and (max-width:600px){
+    .formdiv{
+
+        width: 450px;;
+    }
+    
+}
+@media only screen and (max-width:500px){
+    .formdiv{
+
+        width: 400px;;
+    }
+    .icon{
+        width:8%;
+        top:130px;
+        left:50px;
+    }
+    .icon1{
+        width:8%;
+        left:42px;
+        top:376px;
+    } 
+    .editbtn{
+
+        font-size: 18px;}
+        .disbtn{
+        
+            font-size: 14px;}
+            .formdiv{
+              
+                padding: 10px 20px;
+            }
+}

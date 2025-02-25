@@ -161,3 +161,60 @@ z-index: 2;
     text-decoration: none;
     color: white;
 }
+
+
+
+
+@media only screen and (max-width:900px){
+    .formdiv{
+        width: 70%;
+    }
+    .main{
+   
+        padding: 40px 0px;
+}
+}
+@media only screen and (max-width:760px){
+    .formdiv{
+        width: 80%;
+    }
+}
+@media only screen and (max-width:500px){
+    .formdiv{
+        width: 90%;
+        padding: 10px 25px;
+    }
+    form label{
+     font-size: 15px;  
+    margin: 10px 0px;
+
+    
+    }
+    form input{
+        height:40px;
+    margin:0px 0px 20px 0px;
+}
+#password2{
+ 
+    margin:0px 0px 0px 0px;
+}
+.formdiv h1{
+    font-size: 30px;
+
+}
+form{
+    /* border: 1px solid white; */
+    padding: 28px 0px ;
+  
+}
+#eye2{
+
+    right: 40px;
+    top:525px;
+   }
+   #eye1{
+
+    right: 40px;
+    top:445px;
+   }
+}
