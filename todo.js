@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('addtodo');
     const alertbox = document.getElementById("alert");
     let close = document.getElementById("closebtn");
+  
 
     const msgtext = document.getElementById("msgtext");
     const loader = document.getElementById("loader");
@@ -21,6 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
             headname.innerHTML = `HI! ${firstName} ${lastName}`;
         }
     }
+      const logout = document.getElementById("logout");
+    logout.addEventListener('click', function(){
+     
+        localStorage.removeItem('authToken');
+        window.location.href = 'index.html';
+    });
     close.addEventListener("click", function () {
         alertbox.style.top = "-100px";
     });
@@ -34,14 +41,24 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchTodos(page = 1, searchQuery = '') {
         const url = `https://todo-backend-apis.vercel.app/api/todo?limit=${limit}&page=${page}${searchQuery ? '&search=' + searchQuery : ''}`;
 
+        const token = localStorage.getItem('authToken');
+        // console.log(token);
+
         fetch(url, {
             method: 'GET',
             headers: {
-                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3NDA0MDUzNTAsImV4cCI6MTc0MDQ5MTc1MH0.uY60Ho1U4Uva2eyBDv_4TRb0HBlLPpx10BPybbHZBqA',
+                'authorization': `${token}`,
                 'Content-Type': 'application/json',
             }
         })
-        .then(response => response.json())
+        // .then(response => response.json())
+        .then(response => {
+            if (!response.ok && response.status === 404) { // Check for 404
+                alert("Authentication required. Please log in again.");
+                return
+            } 
+            return response.json();
+        })
         .then(apiResponse => {
             const data = apiResponse.data;
             todoList.innerHTML = ''; 
@@ -126,12 +143,19 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch("https://todo-backend-apis.vercel.app/api/todo", {
                 method: "PUT",
                 headers: {
-                    'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3NDA0MDUzNTAsImV4cCI6MTc0MDQ5MTc1MH0.uY60Ho1U4Uva2eyBDv_4TRb0HBlLPpx10BPybbHZBqA',
+                    'authorization': `${localStorage.getItem('authToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedTodo),
             })
-            .then(response => response.json())
+            // .then(response => response.json())
+            .then(response => {
+                if (!response.ok && response.status === 404) { // Check for 404
+                    alert("Authentication required. Please log in again.");
+                    return
+                } 
+                return response.json();
+            })      
             .then(data => {
                 fetchTodos(currentPage);
                 alertbox.style.top = "60px";
@@ -146,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch("https://todo-backend-apis.vercel.app/api/todo", {
                 method: "POST",
                 headers: {
-                    'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3NDA0MDUzNTAsImV4cCI6MTc0MDQ5MTc1MH0.uY60Ho1U4Uva2eyBDv_4TRb0HBlLPpx10BPybbHZBqA',
+                    'authorization': `${localStorage.getItem('authToken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(todoData),
@@ -181,11 +205,18 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch(`https://todo-backend-apis.vercel.app/api/todo/${id}`, {
             method: 'DELETE',
             headers: {
-                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNiNTM5ZjlhMzVhYzgyODcyMDQ5MTMiLCJpYXQiOjE3NDA0MDUzNTAsImV4cCI6MTc0MDQ5MTc1MH0.uY60Ho1U4Uva2eyBDv_4TRb0HBlLPpx10BPybbHZBqA',
+                'authorization': `${localStorage.getItem('authToken')}`,
                 'Content-Type': 'application/json',
             },
         })
-        .then(response => response.json())
+        // .then(response => response.json())
+        .then(response => {
+            if (!response.ok && response.status === 404) { // Check for 404
+                alert("Authentication required. Please log in again.");
+                return
+            } 
+            return response.json();
+        })
         .then(data => {
             li.remove();
             alertbox.style.top = "60px";

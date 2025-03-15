@@ -103,6 +103,14 @@ close1.addEventListener("click",function(){
                     console.log('Logged in successfully:', data);
                     // alert('Login successful!');
                     alertbox.style.right="10px"
+                    const authorizationToken = response.headers.get('Authorization');
+      if (authorizationToken) {
+        localStorage.setItem('authToken', authorizationToken);
+        console.log("Authorization token stored:", authorizationToken);
+      } else {
+        console.error("Authorization token not found in response headers.");
+      }
+    
                 
                 } else {
                     console.error('Login failed:', data.message);
